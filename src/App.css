@@ -1,6 +1,7 @@
 .main{
   margin: 10px;
   padding: 10px;
+  
 }
 
 .form{
@@ -28,7 +29,7 @@ height: auto !important;
   color: #212529;
   font-size: 120%;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
   float: left;
@@ -59,12 +60,30 @@ line-height: 1.5;
 color: #495057;
 background-color: #fff;
 background-clip: padding-box;
-border: 1px solid #ced4da;
+border: 1px solid black;
 border-radius: .25rem;
-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 text-align: center;
 font-size: 1.3em;
 height: auto;
+}
+
+.button{
+  box-sizing: border-box;
+margin: 0;
+font-family: inherit;
+text-transform: none;
+display: block;
+width: 100%;
+padding: .5rem .75rem;
+line-height: 1;
+color: #232324;
+background-color: rgb(97, 233, 92);
+border: 1px solid black;
+border-radius: .25rem;
+text-align: center;
+font-size: 1.3em;
+height: auto;
+border:none;
 }
 
 .output-data{
@@ -72,7 +91,7 @@ height: auto;
   line-height: 1.5;
   font-size: 120%;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
   float: right;
@@ -81,7 +100,7 @@ height: auto;
   color: red;
   width: 45%;
   height: auto !important;
-  background-color:cornsilk;
+  background-color:rgb(228, 243, 174)
 }
 
 .date{
@@ -91,7 +110,7 @@ height: auto;
   box-sizing: border-box;
   margin-top: 0;
   margin-bottom: 1rem;
-  color: red;
+  color:darkorchid;
   font-size: 12px;
 }
 
