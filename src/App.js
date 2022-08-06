@@ -22,21 +22,33 @@ function App() {
         };
     res();
 }, []);
+
+useEffect(() => {
+  let values = handleFilter(input);
+  setOutput(values);
+}, [input])
+
+const handleFilter = (input) => {
+  let filteredValues = {};
+  if(input.city && input.metal && input.purity && input.weight){
+    filteredValues = priceList.filter(value => value.city === input.city).map((value) => {
+      return {
+        rate: value.price * (input.purity/24)*input.weight,
+        date:value.dateTime
+      }
+    })[0]
+  }
+  return filteredValues;
+}
   const handleChange=async(e)=>{
     const { name, value } = e.target;
-    await setInput({...input,[name]:value})
-
-  }
-  const handleSubmit=async(e)=>{
-    e.preventDefault();
-    try {
-        for(let i=0;i<priceList.length;i++){
-          if(priceList[i].city===input.city)
-            await setOutput({rate:priceList[i].price*(input.purity/24)*input.weight,date:priceList[i].dateTime})
-        }
-        } catch (error) {
-            console.log(error)
-        }
+    if(name === 'weight'){
+      if(value > 0 && value < 9){
+        setInput({...input,[name]:value})
+      }
+    }else{
+      await setInput({...input,[name]:value})
+    }
   }
 
   return (
@@ -96,18 +108,14 @@ function App() {
                 <option value="kolkatta">Kolkata</option>
               </select>
               <br/>
-              <div className="button">
-              <button className='button' onClick={handleSubmit}>Calculate</button>
-              </div>
             </div>
             
           </div>
           <br/><br/>
           
-          
           <div className="output-data" style={{ height: "auto !important" }}>
-            <p name="result" cols="10" className="result">Price: {Math.floor(output.rate/10)} INR <br/>({(output.rate/789.5).toFixed(2)} US Dollar)* </p>
-            <p style={{ fontSize:"12px"}}>*This is based on Dollar to Rupee exchange rate of 1 USD= 78.95 INR</p>
+            <p name="result" cols="10" className="result">Price: {output.rate ? Math.floor(output.rate/10) : 0} INR <br/>({output.rate ? (output.rate/793.7).toFixed(2):0} US Dollar)* </p>
+            <p style={{ fontSize:"12px"}}>*This is based on Dollar to Rupee exchange rate of 1 USD= 79.37 INR</p>
             <p className="date">Updated at: {output.date}</p>
           </div>
     </div>
